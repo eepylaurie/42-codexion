@@ -1,0 +1,1 @@
+// destroys all mutexes/condvars, frees all allocated memory.
