@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 16:12:46 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/06 15:04:22 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/08 15:38:36 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <stdio.h>
 # include <string.h>
 
-# define SHED_FIFO 0
-# define SHED_EDF 1
+# define POLICY_FIFO 0
+# define POLICY_EDF 1
 
 // priority queue node
 typedef struct s_pq_node
