@@ -6,6 +6,7 @@ CFLAGS		= -Wall -Wextra -Werror -pthread
 SRCS		= main.c \
 		  	  parsing.c \
 		  	  init.c \
+			  init_dongles.c \
 		  	  coder.c \
 		  	  dongle.c \
 		  	  monitor.c \
