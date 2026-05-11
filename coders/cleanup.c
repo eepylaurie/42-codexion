@@ -6,11 +6,9 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:26 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 16:35:32 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:04:20 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// destroys all mutexes/condvars, frees all allocated memory.
 
 #include "codexion.h"
 
