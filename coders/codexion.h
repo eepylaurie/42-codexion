@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 16:12:46 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 16:31:36 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 17:22:03 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void		log_burnout(t_sim *sim, int coder_id);
 // cleanup.c
 void		cleanup_sim(t_sim *sim);
 
-// utils
+// sim_utils.c
 int			simulation_stopped(t_sim *sim);
 void		set_sim_stopped(t_sim *sim);
 long		get_coder_deadline(t_coder *coder);

@@ -13,7 +13,8 @@ SRCS		= main.c \
 		  	  heap.c \
 		  	  time_utils.c \
 		  	  log.c \
-		  	  cleanup.c
+		  	  cleanup.c \
+			  sim_utils.c
 
 OBJS		= $(SRCS:.c=.o)
 
