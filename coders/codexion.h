@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 16:12:46 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/08 20:24:36 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:27:55 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int			parse_args(int argc, char **argv, t_sim *sim);
 int			init_sim(t_sim *sim);
 
 // init_dongles.c
-int	init_dongles(t_sim *sim);
+int			init_dongles(t_sim *sim);
 
 // coder.c
 void		*coder_routine(void *arg);
