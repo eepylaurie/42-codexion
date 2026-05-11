@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/08 20:18:47 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/08 20:24:46 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:26:55 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,13 @@ int	init_dongles(t_sim *sim)
 		i++;
 	}
 	return (0);
+}
+
+void	destroy_all_dongles(t_sim *sim)
+{
+	if (!sim->dongles)
+		return ;
+	destroy_dongles_up_to(sim->dongles, sim->number_of_coders);
+	free(sim->dongles);
+	sim->dongles = NULL;
 }
