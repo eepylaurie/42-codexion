@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 16:12:46 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 18:01:01 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 18:19:20 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,15 @@ typedef struct s_dongle
 // coder
 typedef struct s_coder
 {
-	int			id;
-	pthread_t	thread;
-	int			left_dongle;
-	int			right_dongle;
-	long		last_compile_start;
-	int			compile_count;
-	long		seq_num;
-	t_sim		*sim;
+	int				id;
+	pthread_t		thread;
+	int				left_dongle;
+	int				right_dongle;
+	long			last_compile_start;
+	int				compile_count;
+	long			seq_num;
+	t_sim			*sim;
+	pthread_mutex_t	state_mutex;
 }	t_coder;
 
 // simulation
