@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 16:12:46 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 17:22:03 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 18:01:01 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void		destroy_all_dongles(t_sim *sim);
 void		*coder_routine(void *arg);
 
 // dongle.c
-int			aquire_dongle(t_dongle *dongle, t_coder *coder);
+int			acquire_dongle(t_dongle *dongle, t_coder *coder);
 void		release_dongle(t_dongle *dongle, t_sim *sim);
 
 // monitor.c
