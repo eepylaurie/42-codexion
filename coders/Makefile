@@ -14,7 +14,8 @@ SRCS		= main.c \
 		  	  time_utils.c \
 		  	  log.c \
 		  	  cleanup.c \
-			  sim_utils.c
+			  sim_utils.c \
+			  heap_utils.c
 
 OBJS		= $(SRCS:.c=.o)
 

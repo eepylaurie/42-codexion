@@ -6,55 +6,72 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:40 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 16:43:24 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 20:11:03 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// heap_push(), heap_pop(), heap_peek(), heap_init().
-// Pure data structure, no threading logic.
-
 #include "codexion.h"
 
-int	heap_init(t_heap *h, int capacity)
+static void	swap_nodes(t_pq_node *a, t_pq_node *b)
 {
-	(void)h;
-	(void)capacity;
-	return (0);
+	t_pq_node	tmp;
+
+	tmp = *a;
+	*a = *b;
+	*b = *tmp;
+}
+
+static void	sift_down(t_heap *h, int i)
+{
+	int	left;
+	int	smallest;
+
+	while (1)
+	{
+		left = 2 * i + 1;
+		smallest = i;
+		if (left < h->size && h->data[left].priority < h->data[smallest].priority)
+			smallest = left;
+		if (left + 1 < h->size && h->data[left + 1].priority < h->data[smallest].priority)
+			smallest = left + 1;
+		if (smallest == 1)
+			break ;
+		swap_nodes(&h->data[i], &h->data[smallest]);
+		i = smallest;
+	}
 }
 
 void	heap_push(t_heap *h, t_pq_node node)
 {
-	(void)h;
-	(void)node;
+	int			i;
+	int			parent;
+
+	if (h->size >= h->capacity)
+		return ;
+	h->data[h->size] = node;
+	i = h->size;
+	h->size++;
+	while (i > 0)
+	{
+		parent = (i - 1) / 2;
+		if (h->data[parent].priority <= h->data[i].priority)
+			break ;
+		tmp = h->data[i];
+		h->data[i] = h->data[parent];
+		h->data[parent] = tmp;
+		i = parent;
+	}
 }
 
 t_pq_node	heap_pop(t_heap *h)
 {
-	t_pq_node	node;
+	t_pq_node	min;
 
-	(void)h;
-	node.coder_id = 0;
-	node.priority = 0;
-	return (node);
-}
-
-t_pq_node	heap_peek(t_heap *h)
-{
-	t_pq_node	node;
-
-	(void)h;
-	node.coder_id = 0;
-	node.priority = 0;
-	return (node);
-}
-
-int	heap_is_empty(t_heap *h)
-{
-	(void)h;
-	return (1);
-}
-
-void	heap_free(t_heap *h)
-{
-	(void)h;
+	min = h->data[0];
+	h->size--;
+	if (h->size == 0)
+		return (min);
+	h->data[0] = h->data[h->size];
+	sift_down(h, 0);
+	return (min);
 }

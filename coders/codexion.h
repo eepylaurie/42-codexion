@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/05 16:12:46 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 18:19:20 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 20:11:49 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,9 +108,11 @@ void		release_dongle(t_dongle *dongle, t_sim *sim);
 void		*monitor_routine(void *arg);
 
 // heap.c
-int			heap_init(t_heap *h, int capacity);
 void		heap_push(t_heap *h, t_pq_node node);
 t_pq_node	heap_pop(t_heap *h);
+
+// heap_utils.c
+int			heap_init(t_heap *h, int capacity);
 t_pq_node	heap_peek(t_heap *h);
 int			heap_is_empty(t_heap *h);
 void		heap_free(t_heap *h);
