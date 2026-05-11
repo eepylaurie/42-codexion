@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:44 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/08 20:50:46 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:40:38 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,13 @@ int	init_sim(t_sim *sim)
 		return (1);
 	if (init_dongles(sim) != 0)
 	{
-		pthread_mutex_destroy(&sim->stop_mutex);
-		pthread_mutex_destroy(&sim->log_mutex);
+		cleanup_sim(sim);
 		return (1);
 	}
 	if (init_coders(sim) != 0)
-		return (1); /* to-do: cleanup dongles, mutexes once cleanup_sim is real */
+	{
+		cleanup_sim(sim);
+		return (1);
+	}
 	return (0);
 }

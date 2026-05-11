@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:26 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/08 13:08:23 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:35:32 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 
 void	cleanup_sim(t_sim *sim)
 {
-	(void)sim;
+	if (sim->coders)
+	{
+		free(sim->coders);
+		sim->coders = NULL;
+	}
+	destroy_all_dongles(sim);
+	pthread_mutex_destroy(&sim->stop_mutex);
+	pthread_mutex_destroy(&sim->log_mutex);
 }
 
 void	set_sim_stopped(t_sim *sim)

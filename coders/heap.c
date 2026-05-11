@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:40 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/08 13:09:55 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/11 16:43:24 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,9 @@ int	heap_is_empty(t_heap *h)
 {
 	(void)h;
 	return (1);
+}
+
+void	heap_free(t_heap *h)
+{
+	(void)h;
 }
