@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:40 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 20:11:03 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:04:41 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	swap_nodes(t_pq_node *a, t_pq_node *b)
 
 	tmp = *a;
 	*a = *b;
-	*b = *tmp;
+	*b = tmp;
 }
 
 static void	sift_down(t_heap *h, int i)
@@ -56,9 +56,7 @@ void	heap_push(t_heap *h, t_pq_node node)
 		parent = (i - 1) / 2;
 		if (h->data[parent].priority <= h->data[i].priority)
 			break ;
-		tmp = h->data[i];
-		h->data[i] = h->data[parent];
-		h->data[parent] = tmp;
+		swap_nodes(&h->data[i], &h->data[parent]);
 		i = parent;
 	}
 }
