@@ -6,22 +6,34 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:35 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/11 18:49:02 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:34:52 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "codexion.h"
 
-static int	dongle_not_available(t_dongle *dongle, t_sim *sim)
+static long	compute_priority(t_coder *coder)
+{
+	if (coder->sim->scheduler == POLICY_FIFO)
+		return (next_seq_num(coder->sim));
+	return (get_coder_deadline(coder));
+}
+
+static int	is_my_turn(t_dongle *dongle, t_coder *coder, t_sim *sim)
 {
 	long	elapsed;
 
 	if (dongle->taken)
-		return (1);
-	elapsed = get_timestamp_ms(sim->start_ms) - dongle->release_time;
-	if (elapsed < sim->dongle_cooldown)
-		return (1);
-	return (0);
+		return (0);
+	if (dongle->release_time != 0)
+	{
+		elapsed = get_timestamp_ms(sim->start_ms) - dongle->release_time;
+		if (elapsed < sim->dongle_cooldown)
+			return (0);
+	}
+	if (heap_peek(&dongle->wait_queue).coder_id != coder->id)
+		return (0);
+	return (1);
 }
 
 static void	wait_for_dongle(t_dongle *dongle, t_sim *sim)
@@ -46,17 +58,23 @@ static void	wait_for_dongle(t_dongle *dongle, t_sim *sim)
 
 int	acquire_dongle(t_dongle *dongle, t_coder *coder)
 {
-	t_sim	*sim;
+	t_sim		*sim;
+	t_pq_node	node;
 
 	sim = coder->sim;
 	pthread_mutex_lock(&dongle->mutex);
-	while (dongle_not_available(dongle, sim) && !simulation_stopped(sim))
+	node.coder_id = coder->id;
+	node.priority = compute_priority(coder);
+	heap_push(&dongle->wait_queue, node);
+	while (!is_my_turn(dongle, coder, sim) && !simulation_stopped(sim))
 		wait_for_dongle(dongle, sim);
 	if (simulation_stopped(sim))
 	{
 		pthread_mutex_unlock(&dongle->mutex);
+		pthread_cond_broadcast(&dongle->cond);
 		return (1);
 	}
+	heap_pop(&dongle->wait_queue);
 	dongle->taken = 1;
 	pthread_mutex_unlock(&dongle->mutex);
 	log_msg(sim, coder->id, "has taken a dongle");
