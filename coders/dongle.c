@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:35 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/12 14:34:52 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:41:53 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static void	wait_for_dongle(t_dongle *dongle, t_sim *sim)
 		pthread_cond_wait(&dongle->cond, &dongle->mutex);
 		return ;
 	}
-	wait_ms = sim->dongle_cooldown - (get_timestamp_ms(sim->start_ms) - dongle->release_time);
+	wait_ms = sim->dongle_cooldown
+		- (get_timestamp_ms(sim->start_ms) - dongle->release_time);
 	if (wait_ms <= 0)
 		return ;
 	now_ms = get_current_ms() + wait_ms;

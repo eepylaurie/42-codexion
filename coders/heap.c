@@ -6,7 +6,7 @@
 /*   By: lmatthes <lmatthes@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 13:44:40 by lmatthes          #+#    #+#             */
-/*   Updated: 2026/05/12 14:04:41 by lmatthes         ###   ########.fr       */
+/*   Updated: 2026/05/12 14:40:56 by lmatthes         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,11 @@ static void	sift_down(t_heap *h, int i)
 	{
 		left = 2 * i + 1;
 		smallest = i;
-		if (left < h->size && h->data[left].priority < h->data[smallest].priority)
+		if (left < h->size
+			&& h->data[left].priority < h->data[smallest].priority)
 			smallest = left;
-		if (left + 1 < h->size && h->data[left + 1].priority < h->data[smallest].priority)
+		if (left + 1 < h->size
+			&& h->data[left + 1].priority < h->data[smallest].priority)
 			smallest = left + 1;
 		if (smallest == 1)
 			break ;
